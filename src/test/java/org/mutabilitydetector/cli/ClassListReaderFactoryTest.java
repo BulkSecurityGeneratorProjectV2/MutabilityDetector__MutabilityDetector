@@ -25,6 +25,7 @@ package org.mutabilitydetector.cli;
 import static org.junit.Assert.assertTrue;
 
 import java.io.File;
+import java.nio.file.Files;
 
 import org.junit.After;
 import org.junit.Test;
@@ -35,7 +36,7 @@ public class ClassListReaderFactoryTest {
 
     @Test
     public void defaultReturnedReaderIsPlainTextClassListReader() throws Exception {
-        classListFile = File.createTempFile("somePlainTextClassListFile", "noFileExtension");
+        classListFile = Files.createTempFile("somePlainTextClassListFile", "noFileExtension").toFile();
 
         ClassListToReportCollector collector = new ClassListReaderFactory(classListFile).createReader();
 
@@ -44,7 +45,7 @@ public class ClassListReaderFactoryTest {
 
     @Test
     public void returnsAPlainTextReaderWhenFileExtensionIsDotTxt() throws Exception {
-        classListFile = File.createTempFile("somePlainTextClassListFile", ".txt");
+        classListFile = Files.createTempFile("somePlainTextClassListFile", ".txt").toFile();
 
         ClassListToReportCollector collector = new ClassListReaderFactory(classListFile).createReader();
 
